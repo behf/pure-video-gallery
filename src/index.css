@@ -2,41 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Video Hosting Platform Design System - Modern Dark Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark video platform theme */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 346 77% 49.8%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 346 77% 49.8%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom video platform tokens */
+    --video-card-bg: 240 8% 8%;
+    --video-card-hover: 240 8% 12%;
+    --gradient-primary: linear-gradient(135deg, hsl(346 77% 49.8%), hsl(262 83% 58%));
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(240 10% 3.9% / 0.8) 100%);
+    --shadow-video-card: 0 4px 20px hsl(240 10% 3.9% / 0.5);
+    --shadow-hover: 0 8px 30px hsl(346 77% 49.8% / 0.3);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +109,58 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Video card component styles */
+  .video-card {
+    @apply relative overflow-hidden rounded-lg bg-[hsl(var(--video-card-bg))] 
+           transition-all duration-300 hover:scale-105 hover:bg-[hsl(var(--video-card-hover))]
+           cursor-pointer group;
+    box-shadow: var(--shadow-video-card);
+  }
+  
+  .video-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .video-thumbnail {
+    @apply w-full aspect-video object-cover transition-transform duration-300 
+           group-hover:scale-110;
+  }
+  
+  .video-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent
+           opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+  
+  .play-button {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+           w-16 h-16 bg-white/90 rounded-full flex items-center justify-center
+           opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100;
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
