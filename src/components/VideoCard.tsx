@@ -19,7 +19,7 @@ const VideoCard = ({ video, index }: VideoCardProps) => {
 
   return (
     <div 
-      className="video-card animate-fade-in" 
+      className="video-card animate-fade-in group" 
       style={{ animationDelay: `${index * 0.1}s` }}
       onClick={handleVideoClick}
     >

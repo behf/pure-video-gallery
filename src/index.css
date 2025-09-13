@@ -118,7 +118,7 @@
   .video-card {
     @apply relative overflow-hidden rounded-lg bg-[hsl(var(--video-card-bg))] 
            transition-all duration-300 hover:scale-105 hover:bg-[hsl(var(--video-card-hover))]
-           cursor-pointer group;
+           cursor-pointer;
     box-shadow: var(--shadow-video-card);
   }
   
