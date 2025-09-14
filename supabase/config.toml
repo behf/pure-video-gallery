@@ -1,1 +1,4 @@
 project_id = "lzynyviczaotqlinktpn"
+
+[functions.stream-video]
+verify_jwt = false
