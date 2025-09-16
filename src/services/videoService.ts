@@ -28,7 +28,8 @@ class VideoService {
    */
   static async playVideo(videoLink: string): Promise<void> {
     try {
-      const streamUrl = `${this.STREAM_ENDPOINT}?url=${encodeURIComponent(videoLink)}&action=stream`;
+      const debug = (typeof localStorage !== 'undefined' && localStorage.getItem('DEBUG_STREAM') === '1') ? '&debug=1' : '';
+      const streamUrl = `${this.STREAM_ENDPOINT}?url=${encodeURIComponent(videoLink)}&action=stream${debug}`;
       window.open(streamUrl, '_blank');
     } catch (error) {
       console.error('Error streaming video:', error);
@@ -42,7 +43,8 @@ class VideoService {
    */
   static async downloadVideo(videoLink: string, filename?: string): Promise<void> {
     try {
-      const downloadUrl = `${this.STREAM_ENDPOINT}?url=${encodeURIComponent(videoLink)}&action=download&filename=${encodeURIComponent(filename || 'video.mp4')}`;
+      const debug = (typeof localStorage !== 'undefined' && localStorage.getItem('DEBUG_STREAM') === '1') ? '&debug=1' : '';
+      const downloadUrl = `${this.STREAM_ENDPOINT}?url=${encodeURIComponent(videoLink)}&action=download&filename=${encodeURIComponent(filename || 'video.mp4')}${debug}`;
       
       // Create a temporary link to trigger download
       const link = document.createElement('a');

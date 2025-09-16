@@ -53,17 +53,28 @@ function randomTail(length: number = 10): string {
 /**
  * Get direct video URL from d-s.io embed URL
  */
-async function getDirectUrl(embedUrl: string): Promise<string> {
+async function getDirectUrl(embedUrl: string, debug: boolean = false): Promise<string> {
   // Step 1: Fetch embed page HTML
   const embedResponse = await fetch(embedUrl, {
     headers: HEADERS
   });
-  
+
+  console.log('Embed fetch:', {
+    url: embedUrl,
+    status: embedResponse.status,
+    ok: embedResponse.ok,
+    contentType: embedResponse.headers.get('content-type')
+  });
+
+  const html = await embedResponse.text();
+  if (debug) {
+    console.log('Embed HTML (first 2000 chars):', html.slice(0, 2000));
+  }
+
   if (!embedResponse.ok) {
     throw new Error(`Failed to fetch embed page: ${embedResponse.status}`);
   }
 
-  const html = await embedResponse.text();
   const passPath = extractPassMd5(html);
 
   // Build token and expiry
@@ -76,15 +87,25 @@ async function getDirectUrl(embedUrl: string): Promise<string> {
     headers: HEADERS
   });
 
+  console.log('MD5 fetch:', {
+    url: md5Url,
+    status: md5Response.status,
+    ok: md5Response.ok,
+    contentType: md5Response.headers.get('content-type')
+  });
+
+  const md5Body = await md5Response.text();
   if (!md5Response.ok) {
+    if (debug) console.log('MD5 body (first 1000):', md5Body.slice(0, 1000));
     throw new Error(`Failed to fetch MD5 endpoint: ${md5Response.status}`);
   }
 
-  const base = (await md5Response.text()).trim();
+  const base = md5Body.trim();
 
   // Step 3: Generate final URL
   const tail = randomTail();
   const directUrl = `${base}${tail}?token=${token}&expiry=${expiry}`;
+  if (debug) console.log('Direct URL built:', directUrl);
 
   return directUrl;
 }
@@ -99,6 +120,7 @@ serve(async (req) => {
     const url = new URL(req.url);
     const embedUrl = url.searchParams.get('url');
     const action = url.searchParams.get('action') || 'stream';
+    const debug = ['1','true','yes','on'].includes((url.searchParams.get('debug') || '').toLowerCase());
     
     if (!embedUrl) {
       return new Response(JSON.stringify({ error: 'Missing url parameter' }), {
@@ -110,7 +132,7 @@ serve(async (req) => {
     console.log(`Processing ${action} request for:`, embedUrl);
 
     // Get the direct video URL
-    const directUrl = await getDirectUrl(embedUrl);
+    const directUrl = await getDirectUrl(embedUrl, debug);
     console.log('Direct URL obtained:', directUrl);
 
     // If this is just a URL request, return the URL
