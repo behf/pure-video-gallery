@@ -9,19 +9,33 @@ const corsHeaders = {
 
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  'Referer': 'https://d-s.io/'
+  'Referer': 'https://d-s.io/',
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'en-US,en;q=0.9'
 };
 
 /**
  * Extract pass_md5 path from HTML content
  */
 function extractPassMd5(html: string): string {
-  const regex = /\/pass_md5\/[\w\-/]+/;
-  const match = html.match(regex);
-  if (!match) {
-    throw new Error('Could not extract pass_md5 path from HTML');
+  const patterns = [
+    /\/pass_md5\/[A-Za-z0-9\/_-]+/i,
+    /"\/pass_md5\/[A-Za-z0-9\/_-]+"/i,
+    /https?:\/\/[^"'\s]+\/pass_md5\/[A-Za-z0-9\/_-]+/i,
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) {
+      const raw = match[0].replace(/^"|"$/g, '');
+      const idx = raw.indexOf('/pass_md5/');
+      return idx >= 0 ? raw.slice(idx) : raw;
+    }
   }
-  return match[0];
+
+  // Log a small snippet to help debugging without dumping entire HTML
+  console.log('extractPassMd5: no match; html snippet=', html.slice(0, 400));
+  throw new Error('Could not extract pass_md5 path from HTML');
 }
 
 /**
