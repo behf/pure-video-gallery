@@ -5,7 +5,7 @@ interface VideoUrlResult {
 }
 
 class VideoService {
-  private static readonly STREAM_ENDPOINT = 'https://lzynyviczaotqlinktpn.supabase.co/functions/v1/stream-video';
+  private static readonly STREAM_ENDPOINT = 'https://r.nagoz.ir:8000/stream-video';
 
   /**
    * Fallback: Open embed URL in new window for streaming
