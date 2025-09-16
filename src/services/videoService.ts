@@ -5,7 +5,7 @@ interface VideoUrlResult {
 }
 
 class VideoService {
-  private static readonly STREAM_ENDPOINT = 'https://r.nagoz.ir:8000/stream-video';
+  private static readonly STREAM_ENDPOINT = 'http://92.112.127.193:8000/stream-video';
 
   /**
    * Fallback: Open embed URL in new window for streaming
