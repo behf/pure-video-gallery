@@ -3,98 +3,98 @@
     {
       "page_link": "https://example.com/trending1",
       "video_link": "https://player.example.com/trending/video1",
-      "thumbnail_link": "https://picsum.photos/640/360?random=1"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjNmNGY2Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiM5Y2EzYWYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/trending2", 
       "video_link": "https://player.example.com/trending/video2",
-      "thumbnail_link": "https://picsum.photos/640/360?random=2"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZWZmNmZmIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNhNzhmZmYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/trending3",
       "video_link": "https://player.example.com/trending/video3", 
-      "thumbnail_link": "https://picsum.photos/640/360?random=3"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZmVmMWYzIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNmYjdmOGEiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/trending4",
       "video_link": "https://player.example.com/trending/video4",
-      "thumbnail_link": "https://picsum.photos/640/360?random=4"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjBmZGY0Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiMzNGQ5OTkiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/trending5",
       "video_link": "https://player.example.com/trending/video5",
-      "thumbnail_link": "https://picsum.photos/640/360?random=5"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjdmZWZjIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNmYmJmMjQiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/trending6",
       "video_link": "https://player.example.com/trending/video6",
-      "thumbnail_link": "https://picsum.photos/640/360?random=6"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZmNmNWY0Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNmOTczMzYiLz4KPHN2Zz4K"
     }
   ],
   "music": [
     {
       "page_link": "https://example.com/music1",
       "video_link": "https://player.example.com/music/video1",
-      "thumbnail_link": "https://picsum.photos/640/360?random=7"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjBmOWZmIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiMzYjgyZjYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/music2",
       "video_link": "https://player.example.com/music/video2", 
-      "thumbnail_link": "https://picsum.photos/640/360?random=8"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjNmNGY2Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiM5Y2EzYWYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/music3",
       "video_link": "https://player.example.com/music/video3",
-      "thumbnail_link": "https://picsum.photos/640/360?random=9"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjFmNWY5Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiM2MzY2ZjEiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/music4",
       "video_link": "https://player.example.com/music/video4",
-      "thumbnail_link": "https://picsum.photos/640/360?random=10"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZmVmMWYzIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNmYjdmOGEiLz4KPHN2Zz4K"
     }
   ],
   "sports": [
     {
       "page_link": "https://example.com/sports1",
       "video_link": "https://player.example.com/sports/video1",
-      "thumbnail_link": "https://picsum.photos/640/360?random=11"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjBmZGY0Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiMzNGQ5OTkiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/sports2",
       "video_link": "https://player.example.com/sports/video2",
-      "thumbnail_link": "https://picsum.photos/640/360?random=12"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjdmZWZjIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNmYmJmMjQiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/sports3", 
       "video_link": "https://player.example.com/sports/video3",
-      "thumbnail_link": "https://picsum.photos/640/360?random=13"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZmNmNWY0Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNmOTczMzYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/sports4",
       "video_link": "https://player.example.com/sports/video4",
-      "thumbnail_link": "https://picsum.photos/640/360?random=14"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjBmOWZmIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiMzYjgyZjYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/sports5",
       "video_link": "https://player.example.com/sports/video5",
-      "thumbnail_link": "https://picsum.photos/640/360?random=15"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjNmNGY2Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiM5Y2EzYWYiLz4KPHN2Zz4K"
     }
   ],
   "comedy": [
     {
       "page_link": "https://example.com/comedy1",
       "video_link": "https://player.example.com/comedy/video1",
-      "thumbnail_link": "https://picsum.photos/640/360?random=16"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZWZmNmZmIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiNhNzhmZmYiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/comedy2",
       "video_link": "https://player.example.com/comedy/video2", 
-      "thumbnail_link": "https://picsum.photos/640/360?random=17"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjFmNWY5Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiM2MzY2ZjEiLz4KPHN2Zz4K"
     },
     {
       "page_link": "https://example.com/comedy3",
       "video_link": "https://player.example.com/comedy/video3",
-      "thumbnail_link": "https://picsum.photos/640/360?random=18"
+      "thumbnail_link": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSIjZjBmZGY0Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiMzNGQ5OTkiLz4KPHN2Zz4K"
     }
   ]
 }

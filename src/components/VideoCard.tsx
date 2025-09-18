@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Play, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -17,7 +17,28 @@ const VideoCard = ({ video, index }: VideoCardProps) => {
   const [imageError, setImageError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handlePlayVideo = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -68,8 +89,9 @@ const VideoCard = ({ video, index }: VideoCardProps) => {
 
   return (
     <div 
+      ref={cardRef}
       className="video-card animate-fade-in group" 
-      style={{ animationDelay: `${index * 0.1}s` }}
+      style={{ animationDelay: `${Math.min(index * 0.05, 1)}s` }}
     >
       <div className="relative overflow-hidden rounded-lg aspect-video">
         {!imageLoaded && !imageError && (
@@ -78,22 +100,24 @@ const VideoCard = ({ video, index }: VideoCardProps) => {
           </div>
         )}
         
-        {!imageError ? (
+        {!imageError && isVisible ? (
           <img
             src={video.thumbnail_link}
             alt="Video thumbnail"
-            className={`video-thumbnail ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`video-thumbnail transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={() => setImageLoaded(true)}
             onError={() => {
               setImageError(true);
               setImageLoaded(true);
             }}
-            loading="lazy"
+            decoding="async"
           />
         ) : (
-          <div className="flex items-center justify-center w-full h-full bg-secondary">
-            <div className="text-muted-foreground text-sm">Failed to load</div>
-          </div>
+          imageError && (
+            <div className="flex items-center justify-center w-full h-full bg-secondary">
+              <div className="text-muted-foreground text-sm">Failed to load</div>
+            </div>
+          )
         )}
         
         <div className="video-overlay" />
