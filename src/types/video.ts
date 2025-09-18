@@ -1,7 +1,7 @@
 export interface Video {
   page_link: string;
   video_link: string;
-  thumbnail_link: string;
+  thumbnail_color?: string;
 }
 
 export interface VideoData {

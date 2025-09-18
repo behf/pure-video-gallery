@@ -7,14 +7,12 @@ import VideoService from '@/services/videoService';
 interface VideoCardProps {
   video: {
     video_link: string;
-    thumbnail_link: string;
+    thumbnail_color?: string;
   };
   index: number;
 }
 
 const VideoCard = ({ video, index }: VideoCardProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -94,31 +92,12 @@ const VideoCard = ({ video, index }: VideoCardProps) => {
       style={{ animationDelay: `${Math.min(index * 0.05, 1)}s` }}
     >
       <div className="relative overflow-hidden rounded-lg aspect-video">
-        {!imageLoaded && !imageError && (
-          <div className="absolute inset-0 bg-secondary animate-pulse">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
-          </div>
-        )}
-        
-        {!imageError && isVisible ? (
-          <img
-            src={video.thumbnail_link}
-            alt="Video thumbnail"
-            className={`video-thumbnail transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={() => setImageLoaded(true)}
-            onError={() => {
-              setImageError(true);
-              setImageLoaded(true);
-            }}
-            decoding="async"
-          />
-        ) : (
-          imageError && (
-            <div className="flex items-center justify-center w-full h-full bg-secondary">
-              <div className="text-muted-foreground text-sm">Failed to load</div>
-            </div>
-          )
-        )}
+        <div 
+          className="w-full h-full flex items-center justify-center"
+          style={{ backgroundColor: video.thumbnail_color || '#9ca3af' }}
+        >
+          <Play className="w-12 h-12 text-white/70" fill="currentColor" />
+        </div>
         
         <div className="video-overlay" />
         
