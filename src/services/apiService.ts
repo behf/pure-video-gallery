@@ -43,7 +43,7 @@ interface SearchResponse {
 }
 
 class ApiService {
-  private static readonly BASE_URL = 'https://r.nagoz.ir:8000/api';
+  private static readonly BASE_URL = 'http://92.112.127.193:8000/api';
 
   /**
    * Get all available categories
