@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react';
 import VideoGallery from '@/components/VideoGallery';
-import { VideoData } from '@/types/video';
+import ApiService from '@/services/apiService';
+import { Video } from '@/types/video';
 
 const Index = () => {
-  const [videoData, setVideoData] = useState<VideoData | null>(null);
+  const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadVideoData = async () => {
+    const loadCategories = async () => {
       try {
-        const { default: data } = await import('@/data/sampleVideos.json');
-        setVideoData(data as VideoData);
+        const categoriesData = await ApiService.getCategories();
+        setCategories(categoriesData);
       } catch (error) {
-        console.error('Failed to load video data:', error);
+        console.error('Failed to load categories:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    loadVideoData();
+    loadCategories();
   }, []);
 
   if (loading) {
@@ -32,11 +33,11 @@ const Index = () => {
     );
   }
 
-  if (!videoData) {
+  if (categories.length === 0 && !loading) {
     return (
       <div className="min-h-screen bg-background py-8 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-muted-foreground">Failed to load videos</p>
+          <p className="text-muted-foreground">Failed to load categories</p>
         </div>
       </div>
     );
@@ -44,7 +45,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background py-8">
-      <VideoGallery videoData={videoData} />
+      <VideoGallery categories={categories} />
     </div>
   );
 };

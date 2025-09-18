@@ -1,31 +1,60 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import VideoCard from './VideoCard';
 import CategoryTabs from './CategoryTabs';
 import Pagination from './Pagination';
-import { Video, VideoData } from '@/types/video';
+import { Video } from '@/types/video';
+import ApiService, { VideosResponse } from '@/services/apiService';
 
 interface VideoGalleryProps {
-  videoData: VideoData;
+  categories: string[];
 }
 
 const VIDEOS_PER_PAGE = 12;
 
-const VideoGallery = ({ videoData }: VideoGalleryProps) => {
-  const [activeCategory, setActiveCategory] = useState<string>(() => 
-    Object.keys(videoData)[0] || 'trending'
-  );
+const VideoGallery = ({ categories }: VideoGalleryProps) => {
+  const [activeCategory, setActiveCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalVideos, setTotalVideos] = useState(0);
 
-  const categories = Object.keys(videoData);
-  const currentVideos = videoData[activeCategory] || [];
+  // Set initial category when categories are loaded
+  useEffect(() => {
+    if (categories.length > 0 && !activeCategory) {
+      setActiveCategory(categories[0]);
+    }
+  }, [categories, activeCategory]);
 
-  const paginatedVideos = useMemo(() => {
-    const startIndex = (currentPage - 1) * VIDEOS_PER_PAGE;
-    const endIndex = startIndex + VIDEOS_PER_PAGE;
-    return currentVideos.slice(startIndex, endIndex);
-  }, [currentVideos, currentPage]);
+  // Load videos when category or page changes
+  useEffect(() => {
+    if (!activeCategory) return;
 
-  const totalPages = Math.ceil(currentVideos.length / VIDEOS_PER_PAGE);
+    const loadVideos = async () => {
+      setLoading(true);
+      try {
+        const response = await ApiService.getVideos(activeCategory, currentPage, 20);
+        if (response) {
+          setVideos(response.videos);
+          setTotalPages(response.pagination.total_pages);
+          setTotalVideos(response.pagination.total_videos || 0);
+        } else {
+          setVideos([]);
+          setTotalPages(0);
+          setTotalVideos(0);
+        }
+      } catch (error) {
+        console.error('Error loading videos:', error);
+        setVideos([]);
+        setTotalPages(0);
+        setTotalVideos(0);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadVideos();
+  }, [activeCategory, currentPage]);
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
@@ -60,27 +89,45 @@ const VideoGallery = ({ videoData }: VideoGalleryProps) => {
       {/* Video Count */}
       <div className="flex justify-between items-center mb-6">
         <p className="text-muted-foreground">
-          Showing {paginatedVideos.length} of {currentVideos.length} videos in{' '}
-          <span className="text-primary font-medium capitalize">{activeCategory}</span>
+          {loading ? (
+            'Loading videos...'
+          ) : (
+            <>
+              Showing {Math.min((currentPage - 1) * 20 + 1, totalVideos)} - {Math.min(currentPage * 20, totalVideos)} of {totalVideos} videos in{' '}
+              <span className="text-primary font-medium capitalize">{activeCategory}</span>
+            </>
+          )}
         </p>
         <p className="text-sm text-muted-foreground">
           Page {currentPage} of {totalPages}
         </p>
       </div>
 
-      {/* Video Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-        {paginatedVideos.map((video, index) => (
-          <VideoCard
-            key={`${activeCategory}-${currentPage}-${index}`}
-            video={video}
-            index={index}
-          />
-        ))}
-      </div>
+      {/* Video Grid with Loading State */}
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+          {Array.from({ length: 20 }).map((_, index) => (
+            <div key={index} className="bg-card rounded-lg p-4 animate-pulse">
+              <div className="w-full h-48 bg-muted rounded-lg mb-4"></div>
+              <div className="h-4 bg-muted rounded mb-2"></div>
+              <div className="h-3 bg-muted rounded w-3/4"></div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+          {videos.map((video, index) => (
+            <VideoCard
+              key={`${activeCategory}-${currentPage}-${index}`}
+              video={video}
+              index={index}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Empty State */}
-      {paginatedVideos.length === 0 && (
+      {!loading && videos.length === 0 && (
         <div className="text-center py-16">
           <p className="text-xl text-muted-foreground">
             No videos found in this category.

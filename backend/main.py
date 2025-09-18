@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import FastAPI, HTTPException, Request, Response, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 import httpx
@@ -6,9 +6,12 @@ import re
 import json
 import secrets
 import string
+import os
+import math
 from urllib.parse import unquote
 from bs4 import BeautifulSoup
 import asyncio
+from typing import Dict, List, Any
 
 app = FastAPI()
 
@@ -20,6 +23,38 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Global variable to store video data
+video_data_cache = None
+
+def load_video_data():
+    """Load video data from JSON file"""
+    global video_data_cache
+    if video_data_cache is None:
+        try:
+            # Try to load the main data file first
+            if os.path.exists('data.json'):
+                with open('data.json', 'r', encoding='utf-8') as f:
+                    video_data_cache = json.load(f)
+            # Fallback to sample data if main file doesn't exist
+            elif os.path.exists('../src/data/sampleVideos.json'):
+                with open('../src/data/sampleVideos.json', 'r', encoding='utf-8') as f:
+                    video_data_cache = json.load(f)
+            else:
+                # Create minimal sample data if no file exists
+                video_data_cache = {
+                    "category1": [
+                        {
+                            "page_link": "https://example.com/1",
+                            "video_link": "https://example.com/video1.mp4",
+                            "thumbnail_color": "#FF6B6B"
+                        }
+                    ]
+                }
+        except Exception as e:
+            print(f"Error loading video data: {e}")
+            video_data_cache = {}
+    return video_data_cache
 
 # Headers to mimic browser requests
 HEADERS = {
@@ -165,6 +200,57 @@ async def get_direct_url(embed_url: str, debug: bool = False) -> str:
 @app.get("/")
 async def root():
     return {"message": "Video Proxy API", "status": "running"}
+
+@app.get("/api/categories")
+async def get_categories():
+    """Get all available categories"""
+    try:
+        data = load_video_data()
+        return {
+            "success": True,
+            "categories": list(data.keys())
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading categories: {str(e)}")
+
+@app.get("/api/videos")
+async def get_videos(
+    category: str = Query(..., description="Category name"),
+    page: int = Query(1, ge=1, description="Page number"),
+    per_page: int = Query(20, ge=1, le=100, description="Items per page")
+):
+    """Get paginated videos for a specific category"""
+    try:
+        data = load_video_data()
+        
+        if category not in data:
+            raise HTTPException(status_code=404, detail=f"Category '{category}' not found")
+        
+        videos = data[category]
+        total_videos = len(videos)
+        total_pages = math.ceil(total_videos / per_page)
+        
+        # Calculate pagination
+        start_idx = (page - 1) * per_page
+        end_idx = start_idx + per_page
+        paginated_videos = videos[start_idx:end_idx]
+        
+        return {
+            "success": True,
+            "videos": paginated_videos,
+            "pagination": {
+                "current_page": page,
+                "per_page": per_page,
+                "total_videos": total_videos,
+                "total_pages": total_pages,
+                "has_next": page < total_pages,
+                "has_previous": page > 1
+            }
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading videos: {str(e)}")
 
 @app.get("/stream-video")
 async def stream_video(url: str, action: str = "stream", filename: str = "video.mp4", debug: str = "0"):
